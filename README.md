@@ -50,7 +50,7 @@ npm run dev
 yarn dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser. {any availabe prot}
 
 ## Tech Stack
 
@@ -112,9 +112,10 @@ TAVILY_API_KEY=your_tavily_api_key_here
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- [@rileybrown_ai](https://x.com/rileybrown_ai) for inspiration
+- [@rileybrown_ai](https://x.com/rileybrown_ai) for inspiration and guidance
+- [@ansh](https://github.com/ansh) for the project template and technical guidance
 - [DeepSeek](https://deepseek.com) for their powerful AI API
 - [Tavily](https://tavily.com) for their search API
 - [Vercel](https://vercel.com) for their amazing hosting platform
