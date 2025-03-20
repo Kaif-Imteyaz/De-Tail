@@ -20,10 +20,13 @@ export async function POST(req: Request) {
       max_tokens: 1000,
     });
 
-    // Convert the response into a friendly text-stream
-    const stream = OpenAIStream(response as any);
-    
-    // Return a StreamingTextResponse, which can be consumed by the client
+    // Ensure OpenAIStream processes DeepSeek response correctly
+    const stream = OpenAIStream(response, {
+      async *onToken(chunk: { choices: Array<{ delta: { content?: string } }> }) {
+        yield chunk.choices[0]?.delta?.content ?? "";
+      },
+    });
+
     return new StreamingTextResponse(stream);
   } catch (error) {
     console.error('DeepSeek API Error:', error);
@@ -32,4 +35,4 @@ export async function POST(req: Request) {
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
-} 
+}
