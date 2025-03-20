@@ -1,6 +1,11 @@
 import { OpenAI } from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 
+// Validate environment variables
+if (!process.env.DEEPSEEK_API_KEY) {
+  throw new Error('DEEPSEEK_API_KEY is not set in environment variables');
+}
+
 const client = new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY,
   baseURL: 'https://api.deepseek.com',
@@ -62,11 +67,28 @@ export async function POST(req: Request) {
     return new StreamingTextResponse(stream);
   } catch (error) {
     console.error('DeepSeek API Error:', error);
-    console.error('Error details:', {
-      name: error instanceof Error ? error.name : 'Unknown',
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined
-    });
+    
+    // Handle specific error types
+    if (error instanceof Error) {
+      if (error.message.includes('401')) {
+        return new Response(
+          JSON.stringify({ 
+            error: 'Authentication failed. Please check your API key.',
+            details: error.message
+          }), 
+          { status: 401 }
+        );
+      }
+      if (error.message.includes('429')) {
+        return new Response(
+          JSON.stringify({ 
+            error: 'Rate limit exceeded. Please try again later.',
+            details: error.message
+          }), 
+          { status: 429 }
+        );
+      }
+    }
 
     return new Response(
       JSON.stringify({ 
