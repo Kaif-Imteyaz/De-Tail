@@ -7,7 +7,7 @@ if (!process.env.DEEPSEEK_API_KEY) {
 }
 
 const client = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY || "sk-a3593ab61bb544a4927d9e84713520df",
+  apiKey: process.env.DEEPSEEK_API_KEY || "sk-9c02a37a24944d00ae0731dadfee0d0c",
   baseURL: 'https://api.deepseek.com',
 });
 
