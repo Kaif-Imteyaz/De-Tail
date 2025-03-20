@@ -1,15 +1,18 @@
 import { OpenAI } from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 
-// Validate environment variables
-if (!process.env.DEEPSEEK_API_KEY) {
-  throw new Error('DEEPSEEK_API_KEY is not set in environment variables');
-}
+
 
 const client = new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY || "sk-9c02a37a24944d00ae0731dadfee0d0c",
   baseURL: 'https://api.deepseek.com',
 });
+
+// Validate environment variables
+if (!process.env.DEEPSEEK_API_KEY) {
+  console.error("DEEPSEEK_API_KEY is missing!");
+  throw new Error('DEEPSEEK_API_KEY is not set in environment variables');
+}
 
 export const runtime = 'edge';
 
