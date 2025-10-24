@@ -4,6 +4,9 @@ De-Tail is an intelligent research assistant that combines **real-time web searc
 
 ---
 
+<img width="1784" height="577" alt="image" src="https://github.com/user-attachments/assets/0438a314-e17d-4928-a9f1-81a7f472e9b9" />
+
+
 ## Features
 
 ### Intelligent Search & Analysis
